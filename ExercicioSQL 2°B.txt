@@ -1,0 +1,129 @@
+create table funcionario
+(
+	codigo int primary key not null,
+	nome varchar(150)not null,
+	endereco varchar(50)not null,
+	telefone varchar(50)not null,
+	cod_departamento int not null
+);
+create table dependentes 
+(
+	codigo int primary key not null,
+	cod_funcionario int not null,
+	nome varchar (150)not null,
+	data_nasc date not null
+);
+create table departamento
+(
+	codigo int primary key not null,
+	descricao varchar (50)not null
+);
+create table salarios
+(
+	codigo int primary key not null,
+	id_funcionario int not null,
+	valor_salario money not null,
+	data_alteracao date not null
+);
+
+
+insert into funcionario(codigo, nome, endereco, telefone, cod_departamento)
+values (1, 'uelberti', 'rua minas gerais', 991389046, 2)
+
+insert into funcionario(codigo, nome, endereco, telefone, cod_departamento)
+values (2, 'matheus', 'rua sao paulo', 991679034, 1)
+
+insert into funcionario(codigo, nome, endereco, telefone, cod_departamento)
+values (3, 'Vinicius', 'rua mato grosso', 999399047, 2)
+
+insert into funcionario(codigo, nome, endereco, telefone, cod_departamento)
+values (4, 'fernada', 'rua leopordo', 991503970, 3)
+
+insert into funcionario(codigo, nome, endereco, telefone, cod_departamento)
+values (5, 'Vanessa', 'rua av brasil', 998770945, 4)
+
+insert into funcionario(codigo, nome, endereco, telefone, cod_departamento)
+values (6, 'Lucas', 'rua parana', 991383077, 5)
+
+insert into funcionario(codigo, nome, endereco, telefone, cod_departamento)
+values (7, 'pedro', 'rua av brasil', 991907568, 3)
+
+insert into funcionario(codigo, nome, endereco, telefone, cod_departamento)
+values (8, 'Douglas', 'rua sao paulo', 998308561, 4)
+
+insert into dependentes (codigo, cod_funcionario, nome, data_nasc)
+values (45, 1, 'jose','05/12/1980')
+
+insert into dependentes (codigo, cod_funcionario, nome, data_nasc)
+values (46, 2, 'gustavo','17/11/1989')
+
+insert into dependentes (codigo, cod_funcionario, nome, data_nasc)
+values (47, 3, 'leandro','10/04/2000')
+
+insert into dependentes (codigo, cod_funcionario, nome, data_nasc)
+values (48, 4, 'paola','28/01/1990')
+
+insert into dependentes(codigo, cod_funcionario, nome, data_nasc)
+values (49, 5, 'marcia','05/10/1999')
+
+insert into dependentes (codigo, cod_funcionario, nome, data_nasc)
+values (50, 6, 'alessandro','07/07/1998')
+
+insert into dependentes (codigo, cod_funcionario, nome, data_nasc)
+values (51, 7, 'renato','20/03/1970')
+
+insert into dependentes (codigo, cod_funcionario, nome, data_nasc)
+values (52, 8, 'mauro','20/03/1979')
+
+insert into departamento(codigo, descricao)
+values (1, 'RH')
+
+insert into departamento(codigo, descricao)
+values (2, 'finaceiro')
+
+insert into departamento(codigo, descricao)
+values (3, 'vendas')
+
+insert into departamento(codigo, descricao)
+values (4, 'gestao')
+
+insert into departamento(codigo, descricao)
+values (5, 'juridico')
+
+insert into salarios (codigo, id_funcionario, valor_salario, data_alteracao)
+values (21, 1, 2000, '01/12/2023')
+
+insert into salarios (codigo, id_funcionario, valor_salario, data_alteracao)
+values (22, 2, 1500, '01/07/2023')
+
+insert into salarios (codigo, id_funcionario, valor_salario, data_alteracao)
+values (23, 3, 3000, '01/04/2023')
+
+insert into salarios (codigo, id_funcionario, valor_salario, data_alteracao)
+values (24, 4, 2500, '01/05/2023')
+
+insert into salarios (codigo, id_funcionario, valor_salario, data_alteracao)
+values (25, 5, 1900, '01/01/2023')
+
+insert into salarios (codigo, id_funcionario, valor_salario, data_alteracao)
+values (26, 6, 3500, '01/02/2023')
+
+
+
+select * from salarios
+
+delete from salarios
+select f1.nome , s1.valor_salario from funcionario f1 
+left join salarios s1 on s1.id_funcionario = f1.codigo
+
+select f1.nome,
+s1.valor_salario,
+d1.descricao
+from funcionario f1
+inner join salarios s1 on s1.id_funcionario = f1.codigo
+inner join departamento d1 on d1.codigo = f1.cod_departamento;
+
+select dp1.nome Nome_dependentes,
+f1.nome Nome_funcionario
+from dependentes dp1
+right join funcionario f1 on f1.codigo = dp1.cod_funcionario;
